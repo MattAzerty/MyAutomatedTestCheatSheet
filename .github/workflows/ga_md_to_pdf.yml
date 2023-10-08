@@ -23,7 +23,7 @@ jobs:
           mkdir -p _output
           cd docs
           echo; echo "Input Folder Listing"
-          find . -type f -name "*.md" | while read -r f; do cat "$f"; echo; done | md-to-pdf --as-html > ../_output/AutomatedTests_CheatSheet.pdf
+          find . -type f -name "*.md" | while read -r f; do cat "$f"; echo; done | md-to-pdf > ../_output/AutomatedTests_CheatSheet.pdf
           cd ../_output
           echo; echo "Output Folder Listing"
           ls
