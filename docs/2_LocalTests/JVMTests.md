@@ -1,7 +1,7 @@
 # LOCAL TESTING
 
 ## Java Virtual Machine
-![JVM](https://github.com/MattAzerty/MyAutomatedTestCheatSheet/blob/main/docs/JVMTests/JVM.png)
+![JVM](./JVM.png)
 
 Java was designed with the idea of "Write Once, Run Anywhere" (WORA) in mind. This means that once you write your source code in Java (in a .java/.kt file), you can compile it into bytecode (.class file). This bytecode can then be executed, or run, on any platform that has a Java Virtual Machine (for android, runtime are [ART or Dalvik](https://source.android.com/docs/core/runtime)[^1] with use of .dex files).
 
@@ -45,7 +45,7 @@ data class MyObject(val name: String, val id: Int)
 
 ```
 
-![STACKNHEAP](https://github.com/MattAzerty/MyAutomatedTestCheatSheet/blob/main/docs/JVMTests/StackHeap.png)
+![STACKNHEAP](./StackHeap.png)
 
 > [!WARNING]
 > The stack memory is smaller compared to Heap memory and can throw the famous "StackOverflowError".
