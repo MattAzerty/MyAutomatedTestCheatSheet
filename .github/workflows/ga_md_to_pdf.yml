@@ -1,0 +1,35 @@
+name:  Convert markdown files to PDF in GitHub actions
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  converttopdf:
+    name: Build PDF
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: List .md files
+        run: |
+          echo "List of .md files in docs folder and its subdirectories:"
+          find docs -type f -name "*.md"
+
+      - name: Build book
+        run: |-
+          npm install -g md-to-pdf
+          mkdir -p _output
+          cd docs
+          echo; echo "Input Folder Listing"
+          find . -type f -name "*.md" | while read -r f; do cat "$f"; echo; done | md-to-pdf --as-html > ../_output/AutomatedTests_CheatSheet.pdf
+          cd ../_output
+          echo; echo "Output Folder Listing"
+          ls
+          cd ..
+
+      - uses: actions/upload-artifact@v1
+        with:
+          name: AutomatedTests_CheatSheet
+          path: _output
