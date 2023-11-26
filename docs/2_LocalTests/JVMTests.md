@@ -55,11 +55,75 @@ data class MyObject(val name: String, val id: Int)
 > - Be careful with concurrent modifications. If you are modifying a data structure while another thread is iterating over it, you may need to use synchronization to prevent data corruption.
 
 ### ■ Execution Engine:
-...In progress
-The area for executing our compiled and loaded code and cleaning up all the garbage that we’ve generated (Garbage Collector).
+
+The execution engine is the component responsible for executing Java bytecode (Assigned by the Runtime Data Area).
+When you compile Java source code, it gets converted into platform-independent bytecode instructions then executed piece by piece:
+
+- **Interpreter:** It reads the byte code _(must contain a `main()` method!)_ and interprets (convert) into the machine code (native code). Then executes it in a sequential manner. However, interpretation can be slow because it's every time, even if it's the same method, which reduces the performance of the system. To overcome this problem JIT Compilers is introduced in 1.1 version.
+- **JIT Compiler:** To improve performance, modern JVMs use a JIT (Just-In-Time) compiler. It identifies parts of the bytecode frequently executed and compiles them into native machine code, which is executed directly by the underlying hardware. This compiled code replaces the interpreted code, making the execution faster for these specific parts.[^5]
+- **Garbage Collector:** This Java program, as a daemon thread[^6], continuously runs in the background, managing memory by clearing unreachable methods, hence freeing up heap memory automatically. It's a built-in mechanism of any JVM.
+
+**Garbage Collection exemples:**
+
+- Null Value
+  
+```Kotlin
+
+class MyClass {
+    var myArray = IntArray(10000)
+}
+
+fun main() {
+    var obj = MyClass()
+
+    // setting obj reference to null
+    obj = null
+
+    // The object is no longer accessible and becomes eligible for garbage collection
+}
+
+```
+
+- Object References
+
+```Kotlin
+
+class MyClass {
+    var myArray = IntArray(10000)
+}
+
+fun main() {
+    var obj1 = MyClass()
+    var obj2 = MyClass()
+   
+    // obj1 now refers to the same object as obj2
+    obj1 = obj2
+    
+    // obj1's original object is no longer accessible and becomes eligible for garbage collection
+}
+
+```
+
+- Memory Leaks
+
+```Kotlin
+
+class MyClass {
+    var myArray = IntArray(10000)
+}
+
+fun main() {
+    while (true) {
+        val obj = MyClass()
+        // The 'obj' variable is not set to null, and a new object is created each time the loop runs
+    }
+}
+```
+
+
 
 > [!WARNING]
-> A memory leak can easily occur in Android when AsyncTasks, Handlers, Singletons, Threads, and other components are used incorrectly.
+> Memory leaks can easily occur in Android when AsyncTasks, Handlers, Singletons, Threads, and other components are used incorrectly.
 
 ## JUnit
 
@@ -86,4 +150,6 @@ The area for executing our compiled and loaded code and cleaning up all the garb
 [^2]: Static variables and static code can be used to implement a variety of features, such as: Class-level configuration, Singleton objects, Utility classes, ...
 [^3]: A thread is a lightweight process that can run concurrently with other threads. Threads share the same memory space as the process they belong to, but they have their own stack and program counter. This allows threads to run independently of each other, while still sharing data and resources.
 [^4]: Local variables are variables that are declared inside a method or block.
+[^5]: **HotSpot Optimization** by the JIT compiler continually improves frequently used methods. Each time a method hits a certain usage threshold, it gets recompiled with better optimizations. This process keeps repeating until the code is highly optimized. Also, **Code Caching** stores the optimized code for faster future executions.
+[^6]: In Java, a daemon thread is a type of thread that runs in the background and provides support to non-daemon threads.
 
