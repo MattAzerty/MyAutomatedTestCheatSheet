@@ -130,7 +130,8 @@ fun main() {
 JUnit is a unit testing framework for Java, it can be very usefull for TDD-oriented development[^7], enhances overall code quality and instills confidence when modifying or extending the codebase.
 
 
-### Unit test principles
+### ■ Unit test principles:
+
 - **Independent Tests:** Each unit test should be independent of other tests. This means that a test should not rely on the results of other tests to pass. This makes it easier to isolate and debug problems highlighted by a failing test.
 - **High Code Coverage:** Aim for high code coverage, ideally 100% (for your unit tests). High code coverage helps ensure that your code is well-tested and less likely to contain bugs.
 - **Mock Objects for Dependencies:** Use mock objects to isolate unit tests from external/third party dependencies, such as databases, services, and APIs. Mocks allow you to control the behavior of dependencies and ensure that tests are not affected by external factors.
@@ -139,7 +140,8 @@ JUnit is a unit testing framework for Java, it can be very usefull for TDD-orien
 - **Clear Failure Messages:** When a unit test fails, the failure message should clearly indicate the cause of the failure and the part of the code that is not working. This makes it easier for developers to identify and fix the problem.
 - **Android FREE:** JVM test, run on the “Java virtual machine”, so they are not related to android environment SDK.
 
-### Test steps:
+### ■ Test steps:
+
 The general test steps in Junit testing are:
 
 1. Setup
@@ -147,7 +149,7 @@ The general test steps in Junit testing are:
 3. Verify
 4. Teardown
 
-Structure exemple:
+Structure exemple with JUnit5:
 
 ```Kotlin
 internal class MyClassTest {
@@ -169,7 +171,7 @@ private lateinit var myOtherClassFake: MyOtherClassFake
 }
 ```
 
-### Annotations
+### ■ Annotations:
 | JUnit 4 Annotation | JUnit 5 Annotation | Description |
 |--------------------|--------------------|-------------|
 | @After             | @AfterEach          | The annotated method will be executed after each @Test method in the current class. |
