@@ -5,3 +5,4 @@
 - [SOLID Principles](https://openclassrooms.com/fr/courses/6810956-ecrivez-du-code-java-maintenable-avec-mvc-et-solid/6881176-tirez-le-maximum-de-ce-cours)
 - [JVM architecture](https://dzone.com/articles/jvm-architecture-explained)
 - [Stack Based vs Register Based Virtual Machine Architecture](https://www.codeproject.com/Articles/461052/Stack-Based-vs-Register-Based-Virtual-Machine-Arch)
+- [Garbage Collector](https://www.codingninjas.com/studio/library/what-is-garbage-collection-in-the-context-of-java)
