@@ -127,7 +127,46 @@ fun main() {
 
 ## JUnit
 
+JUnit is a unit testing framework for Java, it can be very usefull for TDD-oriented development[^7], enhances overall code quality and instills confidence when modifying or extending the codebase.
 
+
+### Unit test principles
+- **Independent Tests:** Each unit test should be independent of other tests. This means that a test should not rely on the results of other tests to pass. This makes it easier to isolate and debug problems highlighted by a failing test.
+- **High Code Coverage:** Aim for high code coverage, ideally 100% (for your unit tests). High code coverage helps ensure that your code is well-tested and less likely to contain bugs.
+- **Mock Objects for Dependencies:** Use mock objects to isolate unit tests from external/third party dependencies, such as databases, services, and APIs. Mocks allow you to control the behavior of dependencies and ensure that tests are not affected by external factors.
+- **Minimize Execution Time:** Keep unit tests as concise and efficient as possible to minimize execution time. Use clear and concise test cases and consider parallel execution to reduce overall test execution time.
+- **Pre-Deployment Testing:** Execute unit tests before deploying builds to the test environment. This helps identify and fix bugs early in the development process, preventing them from reaching production.
+- **Clear Failure Messages:** When a unit test fails, the failure message should clearly indicate the cause of the failure and the part of the code that is not working. This makes it easier for developers to identify and fix the problem.
+- **Android FREE:** JVM test, run on the “Java virtual machine”, so they are not related to android environment SDK.
+
+### Test steps:
+The general test steps in Junit testing are:
+1.Setup
+2. Exercise
+3. Verify
+4. Teardown
+
+Structure exemple:
+
+```Kotlin
+internal class MyClassTest {
+
+private lateinit var myClass: MyClass
+private lateinit var myOtherClassFake: MyOtherClassFake
+
+    @BeforeEach
+    fun setUp() {
+      myOtherClassFake = MyOtherClassFake()
+      myClass = MyOtherClassFake(myOtherClassFake)
+    }
+
+    @Test
+    fun `MyTest example`() {
+       //test myClass here
+	
+    }
+}
+```
 
 ### Annotations
 | JUnit 4 Annotation | JUnit 5 Annotation | Description |
@@ -152,4 +191,5 @@ fun main() {
 [^4]: Local variables are variables that are declared inside a method or block.
 [^5]: **HotSpot Optimization** by the JIT compiler continually improves frequently used methods. Each time a method hits a certain usage threshold, it gets recompiled with better optimizations. This process keeps repeating until the code is highly optimized. Also, **Code Caching** stores the optimized code for faster future executions.
 [^6]: In Java, a daemon thread is a type of thread that runs in the background and provides support to non-daemon threads.
+[^7]: Test-driven development (TDD) involves writing tests before the actual code. You start by outlining the method signature, then creating a test, and finally implementing the code.
 
