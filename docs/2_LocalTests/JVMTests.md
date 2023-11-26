@@ -141,7 +141,8 @@ JUnit is a unit testing framework for Java, it can be very usefull for TDD-orien
 
 ### Test steps:
 The general test steps in Junit testing are:
-1.Setup
+
+1. Setup
 2. Exercise
 3. Verify
 4. Teardown
@@ -157,7 +158,7 @@ private lateinit var myOtherClassFake: MyOtherClassFake
     @BeforeEach
     fun setUp() {
       myOtherClassFake = MyOtherClassFake()
-      myClass = MyOtherClassFake(myOtherClassFake)
+      myClass = MyClass(myOtherClassFake)
     }
 
     @Test
